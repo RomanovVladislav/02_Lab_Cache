@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 
 class Cache
 {
@@ -14,6 +15,7 @@ class Cache
   Cache(int L1CacheSize, int L3CacheSize);
 
   void ComplexTest();
+  void DisplayingTheExperiment(size_t Number, int Duration);
 
   int DirectTest(int ArraySize);
   int ReverseTest(int ArraySize);

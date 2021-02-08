@@ -19,28 +19,18 @@ void Cache::ComplexTest()
             << "  travel_variant: direct" << std::endl
             << "  experiments:" << std::endl;
 
-  for (size_t i = 0; i < ArraySizes.size(); i++)
+  for (size_t i = 0; i < ArraySizes.size(); ++i)
   {
-    std::cout << "- experiment:" << std::endl
-              << "    number: " << i + 1 << std::endl
-              << "    input data:" << std::endl
-              << "      buffer_size: " << ArraySizes[i] / 256 << " KiB" << std::endl
-              << "    results:" << std::endl
-              << "      duration: " << DirectTest(ArraySizes[i]) << "mcs" << std::endl;
+    DisplayingTheExperiment(i, DirectTest(ArraySizes[i]));
   }
 
   std::cout << "investigation:" << std::endl
             << "  travel_variant: reverse" << std::endl
             << "  experiments:" << std::endl;
 
-  for (size_t i = 0; i < ArraySizes.size(); i++)
+  for (size_t i = 0; i < ArraySizes.size(); ++i)
   {
-    std::cout << "- experiment:" << std::endl
-              << "    number: " << i + 1 << std::endl
-              << "    input data:" << std::endl
-              << "      buffer_size: " << ArraySizes[i] / 256 << " KiB" << std::endl
-              << "    results:" << std::endl
-              << "      duration: " << ReverseTest(ArraySizes[i]) << " mcs" << std::endl;
+    DisplayingTheExperiment(i, ReverseTest(ArraySizes[i]));
   }
 
   std::cout << "investigation:" << std::endl
@@ -49,13 +39,18 @@ void Cache::ComplexTest()
 
   for (size_t i = 0; i < ArraySizes.size(); ++i)
   {
-    std::cout << "- experiment:" << std::endl
-              << "    number: " << i + 1 << std::endl
-              << "    input data:" << std::endl
-              << "      buffer_size: " << ArraySizes[i] / 256 << " KiB" << std::endl
-              << "    results:" << std::endl
-              << "      duration: " << RandomTest(ArraySizes[i]) << "mcs" << std::endl;
+    DisplayingTheExperiment(i, RandomTest(ArraySizes[i]));
   }
+}
+
+void Cache::DisplayingTheExperiment(size_t Number, int Duration)
+{
+    std::cout << "- experiment:" << std::endl
+              << "    number: " << Number + 1 << std::endl
+              << "    input data:" << std::endl
+              << "      buffer_size: " << ArraySizes[Number] / 256 << " KiB" << std::endl
+              << "    results:" << std::endl
+              << "      duration: " << Duration << "mcs" << std::endl;
 }
 
 int Cache::DirectTest(int ArraySize)
